@@ -1,0 +1,30 @@
+    public static void main(String[] args) {
+
+        try {
+            File f = new File("D:\\data\\3D Modeling - Blender\\hello-world-master\\chappie.txt");
+            File fOut = new File("D:\\data\\3D Modeling - Blender\\hello-world-master\\chappie-out.blend");
+            byte[] base64String = IOUtils.toByteArray(new FileInputStream(f));
+            FileOutputStream fos = new FileOutputStream(fOut);
+            fos.write(Base64.decodeBase64(base64String));
+            fos.close();
+        } catch (Exception ex) {
+
+        }
+    }
+
+    public static void genTxt() {
+
+        PrintWriter out = null;
+        try {
+            File chappie = new File("d:\\CHappi.blend");
+            byte[] bytes = IOUtils.toByteArray(new FileInputStream(chappie));
+            String base64 = new String(Base64.encodeBase64(bytes), "UTF-8");
+            out = new PrintWriter("d:\\CHappi.txt");
+            out.println(base64);
+            out.flush();
+        } catch (Exception ex) {
+
+        } finally {
+            IOUtils.closeQuietly(out);
+        }
+    }
